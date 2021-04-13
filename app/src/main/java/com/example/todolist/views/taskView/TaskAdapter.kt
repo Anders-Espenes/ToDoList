@@ -1,4 +1,4 @@
-package com.example.todolist.views
+package com.example.todolist.views.taskView
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.data.Task
 import com.example.todolist.databinding.TaskLayoutBinding
 
-class TodoListAdapter(private var tasks:List<Task>) : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
+class TaskAdapter(private var tasks:List<Task>) : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
 
     class ViewHolder(val binding:TaskLayoutBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task){
