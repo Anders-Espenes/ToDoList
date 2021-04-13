@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/TodoList"
-        android:name="com.example.todolist.views.TodoListFragment"
+        android:name="com.example.todolist.views.todoListView.TodoListFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
