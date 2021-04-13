@@ -1,5 +1,6 @@
 package com.example.todolist.managers
 
+import androidx.lifecycle.ViewModel
 import com.example.todolist.data.Task
 import com.example.todolist.data.TodoList
 
@@ -40,6 +41,10 @@ class TodoListManager {
 
     fun updateTodoList(todoList:TodoList){
         onTodoListUpdate?.invoke(todoList)
+    }
+
+    fun getPosition(todoList:TodoList): Int{
+        return todoLists.indexOf(todoList)
     }
 
     companion object {

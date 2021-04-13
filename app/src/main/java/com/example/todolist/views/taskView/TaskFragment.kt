@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todolist.data.Task
 import com.example.todolist.databinding.TaskFragmentBinding
@@ -15,6 +16,8 @@ class TaskFragment : Fragment() {
 
     private var _binding: TaskFragmentBinding? = null
     private val binding get() = _binding!!
+
+    private val args: TaskFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,14 +35,14 @@ class TaskFragment : Fragment() {
             (binding.taskRecycler.adapter as TaskAdapter).updateTasks(it)
         }
 
-        TaskManager.instance.load()
+
+        TaskManager.instance.load(args.todoList.taskList)
 
         return view
     }
 
-    private fun addTask(text:String) {
+
+    private fun addTask(text: String) {
         TaskManager.instance.addTask(Task(text, false))
     }
-
-
 }

@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/todoListFragment"
         android:name="com.example.todolist.views.todoListView.TodoListFragment"
-        android:label="TodoListFragment">
+        android:label="todo_list_fragment">
         <action
             android:id="@+id/action_todoListFragment_to_taskFragment"
             app:destination="@id/taskFragment" />
@@ -22,5 +22,8 @@
             app:destination="@id/todoListFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <argument
+            android:name="todoList"
+            app:argType="com.example.todolist.data.TodoList" />
     </fragment>
 </navigation>
