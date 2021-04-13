@@ -29,7 +29,7 @@ class TodoListFragment : Fragment() {
         val view = binding.root
 
         binding.todoListRecycler.layoutManager = LinearLayoutManager(this.context)
-        binding.todoListRecycler.adapter = TodoListAdapter(emptyList<TodoList>())
+        binding.todoListRecycler.adapter = TodoListAdapter(emptyList<TodoList>(), this::onTodoListClicked)
 
         TodoListManager.instance.onTodoList = {
             (binding.todoListRecycler.adapter as TodoListAdapter).updateTodoList(it)
@@ -37,11 +37,18 @@ class TodoListFragment : Fragment() {
 
         TodoListManager.instance.load()
 
+
+
+
         return view
     }
 
     private fun addTodoList(text:String) {
         TodoListManager.instance.addTodoList(TodoList(text, emptyList<Task>() as MutableList<Task>))
+    }
+
+    private fun onTodoListClicked(todoList: TodoList): Unit {
+
     }
 
 }

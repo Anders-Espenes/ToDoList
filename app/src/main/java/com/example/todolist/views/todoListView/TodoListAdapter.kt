@@ -7,11 +7,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.data.TodoList
 import com.example.todolist.databinding.TodoListLayoutBinding
 
-class TodoListAdapter(private var todoLists:List<TodoList>) : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
+class TodoListAdapter(private var todoLists:List<TodoList>, private val onTodoListClicked:(TodoList) -> Unit) : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
 
     class ViewHolder(val binding:TodoListLayoutBinding):RecyclerView.ViewHolder(binding.root) {
-        fun bind(todoList: TodoList) {
+        fun bind(todoList: TodoList, onTodoListClicked: (TodoList) -> Unit) {
             binding.text.text = todoList.text
+
+            binding.card.setOnClickListener {
+                onTodoListClicked(todoList)
+            }
         }
     }
 
@@ -19,7 +23,7 @@ class TodoListAdapter(private var todoLists:List<TodoList>) : RecyclerView.Adapt
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val todoList = todoLists[position]
-            holder.bind(todoList)
+            holder.bind(todoList, onTodoListClicked)
         }
 
         fun updateTodoList(newTodoList:List<TodoList>) {
