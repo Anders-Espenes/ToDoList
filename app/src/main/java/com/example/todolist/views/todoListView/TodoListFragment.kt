@@ -45,8 +45,8 @@ class TodoListFragment : Fragment() {
         TodoListManager.instance.addTodoList(TodoList(text, emptyList<Task>() as MutableList<Task>))
     }
 
-    private fun onTodoListClicked(todoList: TodoList): Unit {
-        val action = TodoListFragmentDirections.actionTodoListFragmentToTaskFragment()
+    private fun onTodoListClicked(todoList: TodoList) {
+        val action = TodoListFragmentDirections.actionTodoListFragmentToTaskFragment(todoList)
         findNavController().navigate(action)
     }
 
