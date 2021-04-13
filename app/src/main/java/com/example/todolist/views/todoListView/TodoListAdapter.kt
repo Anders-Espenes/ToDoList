@@ -7,9 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.data.TodoList
 import com.example.todolist.databinding.TodoListLayoutBinding
 
-class TodoListAdapter(private var todoLists:List<TodoList>, private val onTodoListClicked:(TodoList) -> Unit) : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
+class TodoListAdapter(
+    private var todoLists: List<TodoList>,
+    private val onTodoListClicked: (TodoList) -> Unit
+) : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
 
-    class ViewHolder(val binding:TodoListLayoutBinding):RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(val binding: TodoListLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todoList: TodoList, onTodoListClicked: (TodoList) -> Unit) {
             binding.text.text = todoList.text
 
@@ -19,20 +22,26 @@ class TodoListAdapter(private var todoLists:List<TodoList>, private val onTodoLi
         }
     }
 
-        override fun getItemCount(): Int = todoLists.size
+    override fun getItemCount(): Int = todoLists.size
 
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            val todoList = todoLists[position]
-            holder.bind(todoList, onTodoListClicked)
-        }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val todoList = todoLists[position]
+        holder.bind(todoList, onTodoListClicked)
+    }
 
-        fun updateTodoList(newTodoList:List<TodoList>) {
-            todoLists = newTodoList
-           notifyDataSetChanged()
-        }
+    fun updateTodoList(newTodoList: List<TodoList>) {
+        todoLists = newTodoList
+        notifyDataSetChanged()
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(TodoListLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ViewHolder(
+            TodoListLayoutBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 }
