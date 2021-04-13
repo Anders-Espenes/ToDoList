@@ -6,3 +6,5 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class TodoList(val text: String, val taskList: MutableList<Task>) : Parcelable
+
+

@@ -5,11 +5,27 @@
     android:layout_height="match_parent"
     tools:context=".views.todoListView.TodoListFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/todoListRecycler"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/todo_list_layout"
-        />
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/todoListRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/todo_list_layout" />
+
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/todoListFloatingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/purple_200"
+        android:clickable="true"
+        android:contentDescription="@string/add"
+        android:focusable="true"
+        android:src="@android:drawable/ic_input_add" />
 </FrameLayout>
