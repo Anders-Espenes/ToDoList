@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.todolist.R
 import com.example.todolist.data.Task
 import com.example.todolist.data.TodoList
 import com.example.todolist.databinding.TodoListFragmentBinding
@@ -29,7 +29,8 @@ class TodoListFragment : Fragment() {
         val view = binding.root
 
         binding.todoListRecycler.layoutManager = LinearLayoutManager(this.context)
-        binding.todoListRecycler.adapter = TodoListAdapter(emptyList<TodoList>(), this::onTodoListClicked)
+        binding.todoListRecycler.adapter =
+            TodoListAdapter(emptyList<TodoList>(), this::onTodoListClicked)
 
         TodoListManager.instance.onTodoList = {
             (binding.todoListRecycler.adapter as TodoListAdapter).updateTodoList(it)
@@ -37,18 +38,16 @@ class TodoListFragment : Fragment() {
 
         TodoListManager.instance.load()
 
-
-
-
         return view
     }
 
-    private fun addTodoList(text:String) {
+    private fun addTodoList(text: String) {
         TodoListManager.instance.addTodoList(TodoList(text, emptyList<Task>() as MutableList<Task>))
     }
 
     private fun onTodoListClicked(todoList: TodoList): Unit {
-
+        val action = TodoListFragmentDirections.actionTodoListFragmentToTaskFragment()
+        findNavController().navigate(action)
     }
 
 }

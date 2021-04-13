@@ -19,9 +19,16 @@ class TodoListManager {
             Task("Test this app", false)
         )
 
+        val temp2 = mutableListOf(
+            Task("Second Todo List", false),
+            Task("Go shopping", false),
+            Task("Go for a walk", true),
+            Task("Test this app", false)
+        )
+
         todoLists = mutableListOf(
                 TodoList("Daily Task", temp),
-                TodoList("Todo List", temp)
+                TodoList("Todo List", temp2)
         )
 
         onTodoList?.invoke(todoLists)
