@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/TodoList"
         android:name="com.example.todolist.views.todoListView.TodoListFragment"
         android:layout_width="match_parent"
