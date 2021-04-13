@@ -35,7 +35,6 @@ class TaskFragment : Fragment() {
             (binding.taskRecycler.adapter as TaskAdapter).updateTasks(it)
         }
 
-
         TaskManager.instance.load(args.todoList.taskList)
 
         return view
