@@ -6,10 +6,14 @@
     android:orientation="vertical"
     tools:context=".views.taskView.TaskFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/taskRecycler"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/task_layout" />
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/taskRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/task_layout" />
+    </ScrollView>
 </FrameLayout>

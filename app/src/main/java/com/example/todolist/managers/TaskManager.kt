@@ -8,7 +8,7 @@ class TaskManager {
     var onTask: ((List<Task>) -> Unit)? = null
     var onTaskUpdate: ((task: Task) -> Unit)? = null
 
-    fun load(tasks: MutableList<Task> = emptyList<Task>() as MutableList<Task>) {
+    fun load(tasks: MutableList<Task> = mutableListOf<Task>()) {
 
         taskList = tasks
 

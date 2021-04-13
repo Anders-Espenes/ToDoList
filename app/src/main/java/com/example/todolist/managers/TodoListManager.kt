@@ -1,5 +1,6 @@
 package com.example.todolist.managers
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.todolist.data.Task
 import com.example.todolist.data.TodoList
@@ -36,7 +37,10 @@ class TodoListManager {
     }
 
     fun addTodoList(todoList:TodoList){
+        Log.i("TodoListManager","todoList item was added to todoLists: ${todoList.text}" )
         todoLists.add(todoList)
+        onTodoList?.invoke(todoLists)
+
     }
 
     fun updateTodoList(todoList:TodoList){
