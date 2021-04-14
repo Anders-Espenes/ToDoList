@@ -1,8 +1,10 @@
 package com.example.todolist
 
 import android.content.Intent
+import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -13,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val TAG: String = "TodoList:MainActivity"
+    private val TAG: String = "MainActivity"
 
     private lateinit var binding: ActivityMainBinding
 
@@ -32,7 +34,9 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         setupActionBarWithNavController(navController)
 
-
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+            BroadcastReceiver(),
+            IntentFilter("DownloadReady"))
     }
 
     override fun onSupportNavigateUp(): Boolean {
