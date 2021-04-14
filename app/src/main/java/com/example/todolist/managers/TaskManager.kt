@@ -26,7 +26,7 @@ class TaskManager {
     fun addTask(task: Task) {
         Log.d(TAG, "Added task: ${task.toString()}")
         todoList.taskList.add(task)
-        TodoListManager.instance.updateTodoList(todoList) // Update the todoList item in the TodoList manager
+        onTask?.invoke(todoList.taskList)
     }
 
     fun updateTask(task: Task) {

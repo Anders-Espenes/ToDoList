@@ -59,7 +59,7 @@ class TaskFragment : Fragment() {
         return view
     }
 
-    fun addTask(text: String) {
+    private fun addTask(text: String) {
         TaskManager.instance.addTask(Task(text, false))
         this.context?.let { TaskManager.instance.save(it) }
     }
