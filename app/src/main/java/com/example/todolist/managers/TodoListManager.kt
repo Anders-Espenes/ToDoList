@@ -6,6 +6,7 @@ import android.util.Log
 import com.example.todolist.data.TodoList
 import com.example.todolist.services.TodoListService
 import com.example.todolist.views.todoListView.TodoListFragment
+import com.google.android.material.internal.ContextUtils.getActivity
 import com.google.gson.Gson
 
 class TodoListManager {
@@ -45,7 +46,7 @@ class TodoListManager {
     fun save(context: Context, todoList: TodoList) {
         Intent(context, TodoListService::class.java).also {
             Log.i(TAG, Gson().toJson(todoList))
-            it.putExtra("EXTRA_DATA", Gson().toJson(todoList, TodoList::class.java))
+            it.putExtra("EXTRA_DATA", Gson().toJson(todoList))
             context.startService(it)
         }
     }

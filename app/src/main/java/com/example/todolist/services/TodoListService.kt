@@ -47,17 +47,16 @@ class TodoListService : Service() {
                     Log.d(TAG, todoList)
                     onSave("$title-${auth.currentUser.uid}.json", todoList)
                 }
-                Toast.makeText(this, "Service started", Toast.LENGTH_LONG).show()
             }.start()
         }
 
         // Download TodoList from Firebase
-        if (load != null){
+        if (load != null) {
             download()
         }
 
 
-            return START_REDELIVER_INTENT     // Set to restart and and call last intent
+        return START_REDELIVER_INTENT     // Set to restart and and call last intent
     }
 
     override fun onDestroy() {
@@ -69,7 +68,7 @@ class TodoListService : Service() {
         val path = this.getExternalFilesDir(null)
         if (path != null) {
             val file = File(path, fileName)
-            FileOutputStream(file, true).bufferedWriter().use { writer ->
+            FileOutputStream(file, false).bufferedWriter().use { writer ->
                 writer.write(content)
             }
             this.onSave?.invoke(file.toUri())

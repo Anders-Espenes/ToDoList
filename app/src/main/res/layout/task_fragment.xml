@@ -16,4 +16,15 @@
             android:layout_height="wrap_content"
             tools:listitem="@layout/task_layout" />
     </ScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/taskFloatingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/purple_200"
+        android:clickable="true"
+        android:contentDescription="@string/add"
+        android:focusable="true"
+        android:src="@android:drawable/ic_input_add" />
 </FrameLayout>
