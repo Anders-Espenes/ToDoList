@@ -1,26 +1,44 @@
 package com.example.todolist.managers
 
+import android.content.Context
+import android.content.Intent
+import android.util.Log
 import com.example.todolist.data.Task
+import com.example.todolist.data.TodoList
+import com.example.todolist.services.TodoListService
+import com.google.gson.Gson
 
 class TaskManager {
-    private lateinit var taskList: MutableList<Task>
+
+    private val TAG: String = "TaskManager"
+    private lateinit var todoList: TodoList
 
     var onTask: ((List<Task>) -> Unit)? = null
     var onTaskUpdate: ((task: Task) -> Unit)? = null
 
-    fun load(tasks: MutableList<Task> = mutableListOf<Task>()) {
+    fun load(todo : TodoList) {
 
-        taskList = tasks
+       todoList = todo
 
-        onTask?.invoke(taskList)
+        onTask?.invoke(todo.taskList)
     }
 
-    fun addTask(task:Task){
-        taskList.add(task)
+    fun addTask(task: Task) {
+        Log.d(TAG, "Added task: ${task.toString()}")
+        todoList.taskList.add(task)
+        TodoListManager.instance.updateTodoList(todoList) // Update the todoList item in the TodoList manager
     }
 
-    fun updateTask(task:Task){
+    fun updateTask(task: Task) {
         onTaskUpdate?.invoke(task)
+    }
+
+    fun save(context: Context){
+        Intent(context, TodoListService::class.java).also {
+            Log.i(TAG, Gson().toJson(todoList))
+            it.putExtra("EXTRA_DATA", Gson().toJson(todoList, TodoList::class.java))
+            context.startService(it)
+        }
     }
 
     companion object {
