@@ -1,9 +1,12 @@
 package com.example.todolist.managers
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.todolist.data.Task
 import com.example.todolist.data.TodoList
+import com.example.todolist.services.TodoListService
 
 class TodoListManager {
     private lateinit var todoLists: MutableList<TodoList>
@@ -40,7 +43,6 @@ class TodoListManager {
         Log.i("TodoListManager","todoList item was added to todoLists: ${todoList.text}" )
         todoLists.add(todoList)
         onTodoList?.invoke(todoLists)
-
     }
 
     fun updateTodoList(todoList:TodoList){
@@ -49,6 +51,16 @@ class TodoListManager {
 
     fun getPosition(todoList:TodoList): Int{
         return todoLists.indexOf(todoList)
+    }
+
+    fun save(context:Context) {
+        Intent(context, TodoListService::class.java).also {
+            val dataString = todoLists.toString()
+            it.putExtra("EXTRA_DATA", dataString)
+            context.startService(it)
+        }
+
+
     }
 
     companion object {
