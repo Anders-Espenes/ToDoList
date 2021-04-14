@@ -18,4 +18,4 @@ Det er en service
   Det brukes en broadcast reciver for å kunne sende data fra servicen tilbake.
   
   
-  Link til APK: 
+  Link til APK: https://appdistribution.firebase.dev/i/e56fd02c11c765c5
