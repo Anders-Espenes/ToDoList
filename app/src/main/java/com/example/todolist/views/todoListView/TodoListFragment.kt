@@ -1,5 +1,6 @@
 package com.example.todolist.views.todoListView
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -56,7 +57,6 @@ class TodoListFragment : Fragment() {
             bottomSheet.setContentView(bottomSheetView)
             bottomSheet.show()
         }
-
         return view
     }
 
@@ -64,6 +64,7 @@ class TodoListFragment : Fragment() {
     private fun addTodoList(text: String) {
         val todoList = TodoList(text, mutableListOf<Task>())
         TodoListManager.instance.addTodoList(todoList)
+        this.context?.let { TodoListManager.instance.save(it) }
     }
 
     private fun onTodoListClicked(todoList: TodoList) {
