@@ -7,8 +7,6 @@ import androidx.lifecycle.ViewModel
 import com.example.todolist.data.Task
 import com.example.todolist.data.TodoList
 import com.example.todolist.services.TodoListService
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 
 class TodoListManager {
     private lateinit var todoLists: MutableList<TodoList>
@@ -57,9 +55,7 @@ class TodoListManager {
 
     fun save(context:Context) {
         Intent(context, TodoListService::class.java).also {
-            val gson = Gson()
-            val dataString = gson.toJson(todoLists)
-            Log.i("TodoList", dataString)
+            val dataString = todoLists.toString()
             it.putExtra("EXTRA_DATA", dataString)
             context.startService(it)
         }
