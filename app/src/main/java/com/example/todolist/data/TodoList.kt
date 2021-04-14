@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class TodoList(val text: String, val taskList: MutableList<Task>) : Parcelable {
 
     override fun toString(): String {
-        return "TodoList [text: ${text}, taskList: ${taskList}]"
+        return "TodoList text: ${text}, taskList: $taskList"
     }
 }
 

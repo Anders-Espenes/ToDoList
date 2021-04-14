@@ -1,6 +1,5 @@
 package com.example.todolist.views.todoListView
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -41,7 +40,7 @@ class TodoListFragment : Fragment() {
             (binding.todoListRecycler.adapter as TodoListAdapter).updateTodoList(it)
         }
 
-        TodoListManager.instance.load()
+        TodoListManager.instance.load(this)
 
         // TODO: Make this a fragment?
         view.todoListFloatingButton.setOnClickListener {
@@ -64,7 +63,7 @@ class TodoListFragment : Fragment() {
     private fun addTodoList(text: String) {
         val todoList = TodoList(text, mutableListOf<Task>())
         TodoListManager.instance.addTodoList(todoList)
-        this.context?.let { TodoListManager.instance.save(it) }
+        this.context?.let { TodoListManager.instance.save(it, todoList) }
     }
 
     private fun onTodoListClicked(todoList: TodoList) {
