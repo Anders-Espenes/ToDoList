@@ -40,14 +40,12 @@ class TodoListService : Service() {
         val todoList = intent?.getStringExtra("EXTRA_DATA")
         val load = intent?.getStringExtra("LOAD")
 
-        if (todoList != null) { //
-            Thread { // Make a new thread to not hold Main thread up
-                val title = Gson().fromJson(todoList, TodoList::class.java).text
-                todoList?.let {
-                    Log.d(TAG, todoList)
-                    onSave("$title-${auth.currentUser.uid}.json", todoList)
-                }
-            }.start()
+        if (todoList != null) {
+            val title = Gson().fromJson(todoList, TodoList::class.java).text
+            todoList?.let {
+                Log.d(TAG, todoList)
+                onSave("$title-${auth.currentUser.uid}.json", todoList)
+            }
         }
 
         // Download TodoList from Firebase
